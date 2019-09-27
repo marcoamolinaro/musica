@@ -9,21 +9,30 @@ import { MusicProvider } from "../../providers/music/music";
 export class HomePage {
   public allMusic = [];
 
-  constructor(public navCtrl: NavController,
-     private musicProvider: MusicProvider,
-     private loadingController: LoadingController) {
+  constructor(
+    private loadingController: LoadingController,
+    public navCtrl: NavController, 
+    private musicProvider: MusicProvider) {
+    
   }
 
-
-  ionViewDidLoad () {
+  ionViewDidLoad(){
     let allMusicLoadingController = this.loadingController.create({
-      content: "Getting your musica from server"
+      content: "Getting Your Music From Server"    
     });
     allMusicLoadingController.present();
-    this.musicProvider.getMusic() 
-      .subscribe((musicList) => {
+    this.musicProvider.getMusic()
+      .subscribe((musicList)=> {
         allMusicLoadingController.dismiss();
-        this.allMusic = musicList});
+        this.allMusic = musicList
+      });
   }
 
+  addOneSong(refresher){
+    this.musicProvider.getOneSong()
+      .subscribe((oneSong)=> {
+        this.allMusic.unshift(oneSong[0]);
+        refresher.complete();
+      });
+  }
 }

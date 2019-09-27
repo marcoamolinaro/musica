@@ -20,4 +20,10 @@ export class MusicProvider {
       .map(response => response.json());
   }
 
+  getOneSong() {
+    let oneSongUrl = API + "/qty/1";
+    return this.http.get(oneSongUrl)
+        .map(response => response.json());
+  }
+
 }
