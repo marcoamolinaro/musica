@@ -10,12 +10,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { MusicProvider } from '../providers/music/music';
+import { MusicPlayerPage } from "../pages/music-player/music-player";
+import { MediaPlugin } from "@ionic-native/media";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    MusicPlayerPage
   ],
   imports: [
     HttpModule,
@@ -26,9 +29,11 @@ import { MusicProvider } from '../providers/music/music';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    MusicPlayerPage
   ],
   providers: [
+    MediaPlugin,
     SocialSharing,
     StatusBar,
     SplashScreen,
