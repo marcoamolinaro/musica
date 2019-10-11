@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MusicProvider } from "../../providers/music/music";
+import { MusicPlayerPage } from '../music-player/music-player';
 
 @Component({
   selector: 'page-list',
@@ -10,7 +12,12 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public favoriteSongs = [];
+
+  constructor(
+    private musicProvider: MusicProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -33,5 +40,9 @@ export class ListPage {
     this.navCtrl.push(ListPage, {
       item: item
     });
+  }
+
+  ionViewDidLoad() {
+    this.favoriteSongs = this.musicProvider.getFavorites();
   }
 }

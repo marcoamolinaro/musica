@@ -78,4 +78,8 @@ export class HomePage {
       music: music
     });
   }
+
+  addToFavorites(music) {
+    this.musicProvider.addToFavorites(music);
+  }
 }
